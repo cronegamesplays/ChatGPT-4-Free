@@ -35,6 +35,25 @@ body {
   background: var(--chat-background), rgba(0, 0, 0, 0.5); /* Adiciona uma camada escura sobre o fundo em GIF */
 }
 
+/* Estilo para o botão de enviar mensagem */
+.send-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Estilo para o ícone do botão de enviar mensagem */
+.send-button svg {
+  width: 20px; /* Defina o tamanho desejado */
+  height: 20px; /* Defina o tamanho desejado */
+  fill: #5b5e71; /* Cor do ícone */
+}
+
+/* Estilo para alterar a cor do ícone ao passar o mouse */
+.send-button:hover svg {
+  fill: #fff; /* Altere para a cor desejada */
+}
+
 /* Chats container styling */
 .chat-container {
   overflow-y: auto;
