@@ -34,8 +34,8 @@
         message.value = "";
 
         fetch("/get_response?message=" + encodeURIComponent(userMessage))
-          .then(function(response) {
-            return response;
+          .then(function(reply) {
+            return reply;
           })
           .then(function(botMessage) {
             var botDiv = document.createElement("div");
