@@ -32,7 +32,7 @@
 }
 
 body {
-  background: var(--chat-background);
+  background: var(--chat-background), rgba(0, 0, 0, 0.5); /* Adiciona uma camada escura sobre o fundo em GIF */
 }
 
 /* Chats container styling */
@@ -165,10 +165,12 @@ span.material-symbols-rounded {
   0%,44% {
     transform: translateY(0px);
   }
+
   28% {
     opacity: 0.4;
     transform: translateY(-6px);
   }
+
   44% {
     opacity: 0.2;
   }
@@ -182,7 +184,7 @@ span.material-symbols-rounded {
   display: flex;
   padding: 20px 10px;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5); /* Darken the background */
+  background: var(--outgoing-chat-bg);
   border-top: 1px solid var(--incoming-chat-border);
 }
 
