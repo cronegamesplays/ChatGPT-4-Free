@@ -15,7 +15,7 @@ app.get('/get_response', async (req, res) => {
         herc.question({model:"turbo-16k",content:message}).then(response => {
             // console.log(response.reply);
             const reply = response.reply;
-            res.send(reply);
+            res.status(200).json({ content: reply });
         });
     } catch (error) {
         console.error(error);
