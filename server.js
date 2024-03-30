@@ -1,10 +1,9 @@
 const express = require('express');
-
+const { Hercai } = require('hercai');
+const herc = new Hercai();
 
 const app = express();
 const port = process.env.PORT || 3000;
-
-openai.api_key = process.env.OPENAI_API_KEY;
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
@@ -13,12 +12,10 @@ app.get('/', (req, res) => {
 app.get('/get_response', async (req, res) => {
     const message = req.query.message;
     try {
-        const completion = await openai.ChatCompletion.create({
-            model: 'gpt-3.5-turbo',
-            messages: [{ role: 'user', content: message }]
+        herc.question({model:"turbo-16k",content:message}).then(response => {
+            // console.log(response.reply);
+            res.send(response.reply);
         });
-        const response = completion.choices[0].message.content;
-        res.send(response);
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
