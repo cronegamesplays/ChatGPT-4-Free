@@ -12,11 +12,9 @@ app.get('/', (req, res) => {
 app.get('/get_response', async (req, res) => {
     const message = req.query.message;
     try {
-        herc.question({model:"turbo-16k",content:message}).then(response => {
-            // console.log(response.reply);
-            const reply = response.reply;
-            res.status(200).json({ content: reply });
-        });
+        const response = await herc.question({ model: "turbo-16k", content: message });
+        const reply = response.reply;
+        res.status(200).json({ content: reply });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
