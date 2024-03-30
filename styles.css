@@ -17,7 +17,7 @@
   --incoming-chat-bg: #444654;
   --outgoing-chat-border: #343541;
   --incoming-chat-border: #444654;
-  --chat-background: url('your-background.gif') fixed center/cover; /* Adjust 'your-background.gif' to the path of your GIF background */
+  --chat-background: url('https://www.mkgifs.com/wp-content/uploads/2022/09/Anime-4k-Wallpaper-GIF-1.gif') fixed center/cover; /* Adjust 'your-background.gif' to the path of your GIF background */
 }
 
 .light-mode {
