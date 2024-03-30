@@ -17,7 +17,7 @@
   --incoming-chat-bg: #444654;
   --outgoing-chat-border: #343541;
   --incoming-chat-border: #444654;
-  --background-gif: url('https://www.mkgifs.com/wp-content/uploads/2022/09/Anime-4k-Wallpaper-GIF-1.gif'); /* Adicione aqui o URL do seu GIF de background */
+  --chat-background: url('your-background.gif') fixed center/cover; /* Adjust 'your-background.gif' to the path of your GIF background */
 }
 
 .light-mode {
@@ -32,7 +32,7 @@
 }
 
 body {
-  background: var(--outgoing-chat-bg) url(var(--background-gif)) center/cover fixed no-repeat;
+  background: var(--chat-background);
 }
 
 /* Chats container styling */
@@ -40,7 +40,6 @@ body {
   overflow-y: auto;
   max-height: 100vh;
   padding-bottom: 150px;
-  background: rgba(0, 0, 0, 0.3); /* Efeito de escurecimento */
 }
 
 :where(.chat-container, textarea)::-webkit-scrollbar {
@@ -183,7 +182,7 @@ span.material-symbols-rounded {
   display: flex;
   padding: 20px 10px;
   justify-content: center;
-  background: var(--outgoing-chat-bg);
+  background: rgba(0, 0, 0, 0.5); /* Darken the background */
   border-top: 1px solid var(--incoming-chat-border);
 }
 
@@ -256,12 +255,12 @@ span.material-symbols-rounded {
   background: var(--icon-hover-bg);
 }
 
-/* Reponsive Media Query */
+/* Responsive Media Query */
 @media screen and (max-width: 600px) {
   .default-text h1 {
     font-size: 2.3rem;
   }
-
+  
   :where(.default-text p, textarea, .chat p) {
     font-size: 0.95rem!important;
   }
