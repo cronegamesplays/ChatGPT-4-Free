@@ -1,0 +1,25 @@
+{
+  "name": "chat-with-chan",
+  "version": "1.0.0",
+  "description": "A simple chat interface with Chan",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "chat",
+    "chan",
+    "openai",
+    "chatgpt-free",
+    "chatgpt",
+    "free",
+    "chatbot",
+    "chatbot-free"
+  ],
+  "author": "cronegamesplays",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hercai": "^12.2.0"
+  }
+}
