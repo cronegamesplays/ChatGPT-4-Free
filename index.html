@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat with Chan</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <h1>Chat with Chan</h1>
+    </div>
+    <div class="chatbox" id="chatbox"></div>
+    <div class="input-container">
+      <input type="text" id="message" placeholder="Type your message here...">
+      <button id="send">Send</button>
+    </div>
+  </div>
+  
+  <script>
+    var chatbox = document.getElementById("chatbox");
+    var message = document.getElementById("message");
+    var send = document.getElementById("send");
+
+    send.addEventListener("click", function() {
+      var userMessage = message.value.trim();
+      if (userMessage !== "") {
+        var userDiv = document.createElement("div");
+        userDiv.className = "message user";
+        userDiv.innerHTML = userMessage;
+        chatbox.appendChild(userDiv);
+
+        message.value = "";
+
+        fetch("/get_response?message=" + encodeURIComponent(userMessage))
+          .then(function(response) {
+            return response.text();
+          })
+          .then(function(botMessage) {
+            var botDiv = document.createElement("div");
+            botDiv.className = "message bot";
+            botDiv.innerHTML = botMessage;
+            chatbox.appendChild(botDiv);
+
+            chatbox.scrollTop = chatbox.scrollHeight;
+          });
+      }
+    });
+  </script>
+</body>
+</html>
