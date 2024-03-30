@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat with Chan</title>
+  <title>ChatGPT 4 Free</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -38,18 +38,30 @@
 
         message.value = "";
 
-        fetch("/get_response?message=" + encodeURIComponent(userMessage))
-          .then(function(response) {
-            return response.text();
-          })
-          .then(function(botMessage) {
-            var botDiv = document.createElement("div");
-            botDiv.className = "chat incoming";
-            botDiv.innerHTML = '<div class="chat-content"><p>' + botMessage + '</p></div>';
-            chatbox.appendChild(botDiv);
+        // Display "Loading..." message
+        var loadingDiv = document.createElement("div");
+        loadingDiv.className = "chat incoming";
+        loadingDiv.innerHTML = '<div class="chat-content"><p>Loading...</p></div>';
+        chatbox.appendChild(loadingDiv);
 
-            chatbox.scrollTop = chatbox.scrollHeight;
-          });
+        // Simulate delay before receiving response
+        setTimeout(function() {
+          fetch("/get_response?message=" + encodeURIComponent(userMessage))
+            .then(function(response) {
+              return response.content;
+            })
+            .then(function(botMessage) {
+              // Remove "Loading..." message
+              chatbox.removeChild(loadingDiv);
+
+              var botDiv = document.createElement("div");
+              botDiv.className = "chat incoming";
+              botDiv.innerHTML = '<div class="chat-content"><p>' + botMessage + '</p></div>';
+              chatbox.appendChild(botDiv);
+
+              chatbox.scrollTop = chatbox.scrollHeight;
+            });
+        }, 7000); // 7 seconds delay
       }
     });
   </script>
