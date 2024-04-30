@@ -23,6 +23,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     var chatbox = document.getElementById("chatbox");
     var message = document.getElementById("message");
@@ -48,24 +49,28 @@
         loadingDiv.innerHTML = '<div class="chat-content"><p>Loading...</p></div>';
         chatbox.appendChild(loadingDiv);
 
-        // Simulate delay before receiving response
-        setTimeout(function() {
-          fetch("https://hercai.onrender.com/v3-32k/hercai?question=" + encodeURIComponent(userMessage))
-            .then(function(response) {
-              return response.reply;
-            })
-            .then(function(botMessage) {
-              // Remove "Loading..." message
-              chatbox.removeChild(loadingDiv);
+        axios.get("https://hercai.onrender.com/v3-32k/hercai", {
+          params: {
+            question: userMessage
+          }
+        })
+        .then(function(response) {
+          var botMessage = response.data.reply;
 
-              var botDiv = document.createElement("div");
-              botDiv.className = "chat incoming";
-              botDiv.innerHTML = '<div class="chat-content"><p>' + botMessage + '</p></div>';
-              chatbox.appendChild(botDiv);
+          // Remove "Loading..." message
+          chatbox.removeChild(loadingDiv);
 
-              chatbox.scrollTop = chatbox.scrollHeight;
-            });
-        }, 5000); // 5 seconds delay
+          var botDiv = document.createElement("div");
+          botDiv.className = "chat incoming";
+          botDiv.innerHTML = '<div class="chat-content"><p>' + botMessage + '</p></div>';
+          chatbox.appendChild(botDiv);
+
+          chatbox.scrollTop = chatbox.scrollHeight;
+        })
+        .catch(function(error) {
+          console.error('Error fetching bot response:', error);
+          // You can handle errors here, e.g., display an error message in the chatbox
+        });
       }
     }
 
