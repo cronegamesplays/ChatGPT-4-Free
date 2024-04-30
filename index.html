@@ -50,9 +50,9 @@
 
         // Simulate delay before receiving response
         setTimeout(function() {
-          fetch("/get_response?message=" + encodeURIComponent(userMessage))
+          fetch("https://hercai.onrender.com/v3-32k/hercai?question=" + encodeURIComponent(userMessage))
             .then(function(response) {
-              return response.content;
+              return response.reply;
             })
             .then(function(botMessage) {
               // Remove "Loading..." message
